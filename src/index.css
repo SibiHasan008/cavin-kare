@@ -1,111 +1,75 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* Light theme (default) */
 :root {
-  --text: #6b6375;
-  --text-h: #08060d;
-  --bg: #fff;
-  --border: #e5e4e7;
-  --code-bg: #f4f3ec;
-  --accent: #aa3bff;
-  --accent-bg: rgba(170, 59, 255, 0.1);
-  --accent-border: rgba(170, 59, 255, 0.5);
-  --social-bg: rgba(244, 243, 236, 0.5);
-  --shadow:
-    rgba(0, 0, 0, 0.1) 0 10px 15px -3px, rgba(0, 0, 0, 0.05) 0 4px 6px -2px;
-
-  --sans: system-ui, 'Segoe UI', Roboto, sans-serif;
-  --heading: system-ui, 'Segoe UI', Roboto, sans-serif;
-  --mono: ui-monospace, Consolas, monospace;
-
-  font: 18px/145% var(--sans);
-  letter-spacing: 0.18px;
-  color-scheme: light dark;
-  color: var(--text);
-  background: var(--bg);
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-
-  @media (max-width: 1024px) {
-    font-size: 16px;
-  }
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
+  --site-banner-bg-from: #0a2744;
+  --site-banner-bg-mid: #002147;
+  --site-banner-bg-to: #001028;
+  --site-banner-fg: #ffffff;
+  --site-banner-muted: rgba(255, 255, 255, 0.88);
+  --site-banner-border: rgba(255, 255, 255, 0.08);
+  --site-banner-divider: rgba(255, 255, 255, 0.12);
+  --site-banner-control-hover: rgba(255, 255, 255, 0.1);
+  --site-banner-focus-ring: rgba(255, 255, 255, 0.45);
+  --nav-bg: #ffffff;
+  --nav-border: #e8eaee;
+  --nav-link: #5a5f66;
+  --nav-link-hover: #002147;
+  --nav-logo-text: #0d4a7a;
+  --nav-logo-tagline: #3d7ab5;
+  --nav-icon-ring: #002147;
+  --nav-toggle-track: #e4e6eb;
+  --nav-toggle-active: #ffffff;
+  --nav-search-ring-gradient: linear-gradient(135deg, #002147 0%, #2a6fb0 52%, #c41e3a 100%);
+  --cta-gradient: linear-gradient(to right, #0a192f, #0047ab);
+  --cta-secondary-fill: #ffffff;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --text: #9ca3af;
-    --text-h: #f3f4f6;
-    --bg: #16171d;
-    --border: #2e303a;
-    --code-bg: #1f2028;
-    --accent: #c084fc;
-    --accent-bg: rgba(192, 132, 252, 0.15);
-    --accent-border: rgba(192, 132, 252, 0.5);
-    --social-bg: rgba(47, 48, 58, 0.5);
-    --shadow:
-      rgba(0, 0, 0, 0.4) 0 10px 15px -3px, rgba(0, 0, 0, 0.25) 0 4px 6px -2px;
-  }
-
-  #social .button-icon {
-    filter: invert(1) brightness(2);
-  }
+/* Dark theme — class "dark" on <html> */
+:root.dark {
+  --foreground-rgb: 255, 255, 255;
+  --background-start-rgb: 0, 0, 0;
+  --background-end-rgb: 0, 0, 0;
+  --site-banner-bg-from: #1a2332;
+  --site-banner-bg-mid: #121a24;
+  --site-banner-bg-to: #0c1018;
+  --site-banner-fg: #e8edf4;
+  --site-banner-muted: rgba(232, 237, 244, 0.82);
+  --site-banner-border: rgba(255, 255, 255, 0.06);
+  --site-banner-divider: rgba(255, 255, 255, 0.1);
+  --site-banner-control-hover: rgba(255, 255, 255, 0.08);
+  --site-banner-focus-ring: rgba(130, 180, 255, 0.55);
+  --nav-bg: #0c0f14;
+  --nav-border: #1f2937;
+  --nav-link: #b8c0cc;
+  --nav-link-hover: #e8edf4;
+  --nav-logo-text: #8ec5f7;
+  --nav-logo-tagline: #9cb4cc;
+  --nav-icon-ring: #8ec5f7;
+  --nav-toggle-track: #1f2937;
+  --nav-toggle-active: #374151;
+  --nav-search-ring-gradient: linear-gradient(135deg, #7eb8ea 0%, #a5b4fc 48%, #fb7185 100%);
+  --cta-secondary-fill: var(--nav-bg);
 }
 
-body {
-  margin: 0;
-}
-
-#root {
-  width: 1126px;
-  max-width: 100%;
-  margin: 0 auto;
-  text-align: center;
-  border-inline: 1px solid var(--border);
-  min-height: 100svh;
-  display: flex;
-  flex-direction: column;
-  box-sizing: border-box;
-}
-
-h1,
-h2 {
-  font-family: var(--heading);
-  font-weight: 500;
-  color: var(--text-h);
-}
-
-h1 {
-  font-size: 56px;
-  letter-spacing: -1.68px;
-  margin: 32px 0;
-  @media (max-width: 1024px) {
-    font-size: 36px;
-    margin: 20px 0;
-  }
-}
-h2 {
-  font-size: 24px;
-  line-height: 118%;
-  letter-spacing: -0.24px;
-  margin: 0 0 8px;
-  @media (max-width: 1024px) {
-    font-size: 20px;
-  }
-}
-p {
-  margin: 0;
-}
-
-code,
-.counter {
-  font-family: var(--mono);
-  display: inline-flex;
-  border-radius: 4px;
-  color: var(--text-h);
-}
-
-code {
-  font-size: 15px;
-  line-height: 135%;
-  padding: 4px 8px;
-  background: var(--code-bg);
+/* Map design tokens to Tailwind color utilities (bg-*, text-*, border-*, ring-*, etc.) */
+@theme inline {
+  --color-nav-bg: var(--nav-bg);
+  --color-nav-border: var(--nav-border);
+  --color-nav-link: var(--nav-link);
+  --color-nav-link-hover: var(--nav-link-hover);
+  --color-nav-icon-ring: var(--nav-icon-ring);
+  --color-nav-toggle-track: var(--nav-toggle-track);
+  --color-nav-toggle-active: var(--nav-toggle-active);
+  --color-site-banner-fg: var(--site-banner-fg);
+  --color-site-banner-muted: var(--site-banner-muted);
+  --color-site-banner-border: var(--site-banner-border);
+  --color-site-banner-divider: var(--site-banner-divider);
+  --color-site-banner-control-hover: var(--site-banner-control-hover);
+  --color-site-banner-focus-ring: var(--site-banner-focus-ring);
 }
